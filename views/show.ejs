@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAll users</title>
+    <style>
+        /* General Reset */
+        body, h3, table, th, td, button {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            background: #f5f7fa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Header Styling */
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Form Button Styling */
+        form button {
+            background: #4caf50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        form button:hover {
+            background: #388e3c;
+        }
+
+        /* Table Styling */
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Table Header Styling */
+        th {
+            background: #4caf50;
+            color: white;
+            text-transform: uppercase;
+            padding: 12px 15px;
+        }
+
+        /* Table Cell Styling */
+        td {
+            padding: 10px 15px;
+            text-align: center;
+            color: #555;
+        }
+
+        /* Alternate Row Coloring */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Hover Effect on Rows */
+        tr:hover {
+            background-color: #e9f5e9;
+        }
+
+        /* Edit and Delete Buttons */
+        td form button {
+            margin: 5px;
+            padding: 6px 10px;
+            font-size: 0.85rem;
+        }
+
+        td form button:first-child {
+            background: #1976d2;
+        }
+
+        td form button:first-child:hover {
+            background: #135ba1;
+        }
+
+        td form button:last-child {
+            background: #d32f2f;
+        }
+
+        td form button:last-child:hover {
+            background: #a72828;
+        }
+    </style>
+</head>
+<body>
+    <form method="get" action="/user/new">
+        <button>Add Data</button>
+    </form>
+    <h3>List of the all te user</h3>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Username</th>
+        </tr>
+        <%for(user of show){%>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.email %></td>
+                <td><%= user.username %></td>
+                <td>
+                    <form method="GET" action="/user/<%= user.id %>/edit">
+                        <button>Edit username</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="GET" action="/user/<%= user.id %>/delete">
+                        <button>Delete username</button>
+                    </form>
+                </td>
+            </tr>
+        <%}%>
+    </table>
+</body>
+</html>
+
